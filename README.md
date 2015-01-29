@@ -1,3 +1,32 @@
+NOTES
+"Measure First, THEN Optimize"
+
+- added media query to print.css link tag
+- rearranged order of javascript link tags to bottom of doc
+- moved css link tags above title tag....prolly not necessary
+- dropped the webfont link tag below the css link tags
+- added async value to custom js link tag
+- remove comments in html...minify?
+- inline style.css?
+- inline scripts always block UNLESS js link is ABOVE CSS...
+- inline css font declaration for Open Sans 400,700
+- minify?
+
+- web fonts: EOT is IE8 only...fuckit. Woff is most universal, serve that with a Arial/Verdana fallback?
+
+- scale images and set css size rules
+
+- modify resizePizzas:
+	- line 406: cache doc.querySelector result
+	- why is ChangeSliderLabel a declared function when it gets called immediately after definition?
+
+	- line 452: cache changePizzaSizes
+	- Line 473 ... cache querySelector used in loop
+	- Line 507: doc.body.scrollTop needs to be cached?
+
+	- Line 536: cache querySelector
+
+
 ## Website Performance Optimization portfolio project
 
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
@@ -11,18 +40,18 @@ Some useful tips to help you get started:
 1. Check out the repository
 1. To inspect the site on your phone, you can run a local server
 
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
+	```bash
+	$> cd /path/to/your-project-folder
+	$> python -m SimpleHTTPServer 8080
+	```
 
 1. Open a browser and visit localhost:8080
 1. Download and install [ngrok](https://ngrok.com/) to make your local server accessible remotely.
 
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ngrok 8080
-  ```
+	``` bash
+	$> cd /path/to/your-project-folder
+	$> ngrok 8080
+	```
 
 1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
 
