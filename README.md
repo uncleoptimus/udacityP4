@@ -11,10 +11,12 @@ NOTES
 - inline scripts always block UNLESS js link is ABOVE CSS...
 - inline css font declaration for Open Sans 400,700
 - minify?
+- add a scroll handler that temporarily disables hover effects while scrolling
 
 - web fonts: EOT is IE8 only...fuckit. Woff is most universal, serve that with a Arial/Verdana fallback?
 
-- scale images and set css size rules
+- scale images and set css size rules ... esp pizzeria img gets a couple smaller sizes..
+	- can also work in device width specific img requests
 
 - modify resizePizzas:
 	- line 406: cache doc.querySelector result
@@ -25,6 +27,15 @@ NOTES
 	- Line 507: doc.body.scrollTop needs to be cached?
 
 	- Line 536: cache querySelector
+
+	- Mover elements: too many? Seems I only ever see as many as the viewport is high...how can I control number of movers based on viewport height? See ~line 480
+		- For Movers, each has a height of 100px and an offset top of 256px * row they are in...
+		- ...each has width 73px and are spread btwn 200-300 px apart...
+		- Therefore, with 8 Movers per row, 5 rows would equal height of 1780px (each takes ~356px)
+		- Get viewport size...divide height by 356, width by 300...generate Movers accordingly
+		- Also what if I applied the Layer hack to the Mover css class?
+
+
 
 
 ## Website Performance Optimization portfolio project
