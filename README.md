@@ -1,6 +1,7 @@
 NOTES
 "Measure First, THEN Optimize"
 
+PageSpeed of index.html:
 - added media query to print.css link tag
 - rearranged order of javascript link tags to bottom of doc
 - moved css link tags above title tag....prolly not necessary
@@ -13,11 +14,12 @@ NOTES
 - minify?
 - add a scroll handler that temporarily disables hover effects while scrolling
 
-- web fonts: EOT is IE8 only...fuckit. Woff is most universal, serve that with a Arial/Verdana fallback?
+- web fonts: EOT is IE8 only...fukit. Woff is most universal, serve that with a Arial/Verdana fallback?
 
 - scale images and set css size rules ... esp pizzeria img gets a couple smaller sizes..
 	- can also work in device width specific img requests
 
+Optimize main.js of pizzeria.html:
 - modify resizePizzas:
 	- line 406: cache doc.querySelector result
 	- why is ChangeSliderLabel a declared function when it gets called immediately after definition?
@@ -44,6 +46,16 @@ NOTES
 	Observation: enabling "gpu acceleration" via the layer hack had two interesting results...
 		- In Timeline, paints went WAY down but white bar activity (gpu time?) went WAY up
 		- According to User Timing API, measuring time to generate last 10 frames, actually INCREASED slightly
+		- Googling led to http://stackoverflow.com/questions/18257206/extra-render-time-in-chrome-dev-tools-timeline-frames
+			which links to a video by Paul Irish explaining white bar 'phenomena' as chrome likely waiting on gpu
+
+Build Tools:
+	- Installed node/npm
+	- Installed browserify to concat (and resolve dependencies) js files...result: one js file, one http request
+	- Installed uglify to aggressively shrink down 'production' js file
+	- Installed watchify to auto build using browserify upon file edits
+	- Added a build script to 'scripts' object in npm package.json file to automate build process
+	NOTE: using Brackets editor, including extensions to auto-minify files...
 
 ## Website Performance Optimization portfolio project
 

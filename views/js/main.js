@@ -558,19 +558,20 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-	var cols = 8;
-	var s = 256;
+	var cols = 8,
+			s = 256,
+			rows = 6,
+			totalpizzas = 48;
 
-	cols = Math.floor(window.innerWidth / (256 - 73.33));
+	// recalculate cols and rows based on device browser window
+	cols = Math.ceil(window.innerWidth / (256 - 73.33)); // factoring in img width for better effect
 	rows = Math.ceil(window.innerHeight / 256);
 	totalpizzas = cols * rows;
-	console.log("Dimensions are: %s, %s and figures are %s, %s and total pizzas is %s" , window.innerHeight, window.innerWidth, cols, rows, totalpizzas);
 
 	// CACHE for performance!!
-	// Number of movers equal to 8 per row with 6 rows
+	// totalpizzass = number of movers equal to number of 'columns' x number of 'rows'
 	_movingPizzas1 = document.querySelector("#movingPizzas1");
 	var fragment = document.createDocumentFragment(); // node container to minimize dom reflow
-
 	for (var i = 0; i < totalpizzas; i++) {
 		var elem = document.createElement('img');
 		elem.className = 'mover';
@@ -578,19 +579,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		elem.style.height = "100px";
 		elem.style.width = "73.333px";
 		elem.basicLeft = (i % cols) * s;
-
 		elem.style.left = elem.basicLeft + "px"; // moved from updatePositions to minimize dom lookup
-
-//		elem.style.transform = "translate(" + elem.basicLeft + "px) translateZ(-2px)";
-//		console.log("elem gets left of : %s", elem.basicLeft);
-
 		elem.style.top = (Math.floor(i / cols) * s) + 'px';
-//		document.querySelector("#movingPizzas1").appendChild(elem);
-
-//		_movingPizzas1.appendChild(elem);
-		fragment.appendChild(elem);
+		fragment.appendChild(elem); // appending to docfragment to minimize touching dom
 	}
-	_movingPizzas1.appendChild(fragment);
-
+	_movingPizzas1.appendChild(fragment); // appends all elements inside fragment into target container
 	updatePositions();
 });
