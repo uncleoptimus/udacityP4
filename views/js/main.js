@@ -525,15 +525,20 @@ function updatePositions() {
 	window.performance.mark("mark_start_frame");
 
 	var items = document.querySelectorAll('.mover');
-	// CACHE for performance... I think scrollTop counts as layout trigger?
-	_scrollTop = document.body.scrollTop / 1250;
+	// CACHE for performance, precompute recurrent values
+	var _scrollTop = document.body.scrollTop / 1250;
+	var phases = [(Math.sin(_scrollTop)),
+							 (Math.sin(_scrollTop + 1)),
+							 (Math.sin(_scrollTop + 2)),
+							 (Math.sin(_scrollTop + 3)),
+							 (Math.sin(_scrollTop + 4))];
+
 	for (var i = 0; i < items.length; i++) {
 //		var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-		var phase = Math.sin(_scrollTop + (i % 5));
+		var phase = phases[(i % 5)];
+
 //		items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-//		items[i].style.transform = setTransform(items[i].basicLeft);
 		var tstring = "translateX(" + (100 * phase) + "px) translateZ(0)";
-//		console.log(tstring);
 		items[i].style.transform = tstring;
 
 	}
@@ -556,10 +561,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	var cols = 8;
 	var s = 256;
 
+	cols = Math.floor(window.innerWidth / (256 - 73.33));
+	rows = Math.ceil(window.innerHeight / 256);
+	totalpizzas = cols * rows;
+	console.log("Dimensions are: %s, %s and figures are %s, %s and total pizzas is %s" , window.innerHeight, window.innerWidth, cols, rows, totalpizzas);
+
 	// CACHE for performance!!
 	// Number of movers equal to 8 per row with 6 rows
 	_movingPizzas1 = document.querySelector("#movingPizzas1");
-	for (var i = 0; i < 30; i++) {
+	var fragment = document.createDocumentFragment(); // node container to minimize dom reflow
+
+	for (var i = 0; i < totalpizzas; i++) {
 		var elem = document.createElement('img');
 		elem.className = 'mover';
 		elem.src = "images/pizza.png";
@@ -567,15 +579,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		elem.style.width = "73.333px";
 		elem.basicLeft = (i % cols) * s;
 
-		elem.style.left = elem.basicLeft + "px";
+		elem.style.left = elem.basicLeft + "px"; // moved from updatePositions to minimize dom lookup
+
 //		elem.style.transform = "translate(" + elem.basicLeft + "px) translateZ(-2px)";
 //		console.log("elem gets left of : %s", elem.basicLeft);
 
 		elem.style.top = (Math.floor(i / cols) * s) + 'px';
 //		document.querySelector("#movingPizzas1").appendChild(elem);
 
-		_movingPizzas1.appendChild(elem);
-
+//		_movingPizzas1.appendChild(elem);
+		fragment.appendChild(elem);
 	}
-//	updatePositions();
+	_movingPizzas1.appendChild(fragment);
+
+	updatePositions();
 });

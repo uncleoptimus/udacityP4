@@ -33,11 +33,6 @@ form {
 	position: fixed;
 	width: 256px;
 	z-index: -1;
-
-	/* layer hack to employ GPU performance boost */
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
-
 }
 
 .randomPizzaContainer {
@@ -53,4 +48,16 @@ form {
 
 	.container {
 	background-color: rgba(240, 60, 60, 0.8);
+}
+
+uorange {
+	color: #f59a18;
+}
+
+ublue {
+	color: #307699;
+}
+
+ugray {
+	color: #767676;
 }

@@ -34,9 +34,16 @@ NOTES
 		- Therefore, with 8 Movers per row, 5 rows would equal height of 1780px (each takes ~356px)
 		- Get viewport size...divide height by 356, width by 300...generate Movers accordingly
 		- Also what if I applied the Layer hack to the Mover css class?
+		- Batch append mover elements using createDocumentFragment
+		- Apply left position adjustment one time only on element creation
 
+	- modify updatePositions: precompute phase values, cache DOM query, change to use translateX
 
+	- meta viewport tag inserted to ensure proper device wide display
 
+	Observation: enabling "gpu acceleration" via the layer hack had two interesting results...
+		- In Timeline, paints went WAY down but white bar activity (gpu time?) went WAY up
+		- According to User Timing API, measuring time to generate last 10 frames, actually INCREASED slightly
 
 ## Website Performance Optimization portfolio project
 
