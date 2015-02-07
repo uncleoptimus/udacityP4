@@ -54,6 +54,9 @@ Build Tools:
 	- Installed browserify to concat (and resolve dependencies) js files...result: one js file, one http request
 	- Installed uglify to aggressively shrink down 'production' js file
 	- Installed watchify to auto build using browserify upon file edits
+	- Installed auto-prefixer for css files
+	- Installed cleancss for minification
+	- Installed concat-cli to concat css files
 	- Added a build script to 'scripts' object in npm package.json file to automate build process
 	NOTE: using Brackets editor, including extensions to auto-minify files...
 

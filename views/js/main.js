@@ -454,13 +454,13 @@ var resizePizzas = function(size) {
 	}
 
 	// Iterates through pizza elements on the page and changes their widths
-	// CACHE for performance!
 	function changePizzaSizes(size) {
-		_randomContainer = document.querySelectorAll(".randomPizzaContainer");
-		var dx = determineDx(_randomContainer[0], size);
-		var newwidth = (_randomContainer[0].offsetWidth + dx) + 'px';
-		for (var i = 0; i < _randomContainer.length; i++) {
-			_randomContainer[i].style.width = newwidth;
+		// CACHE for performance, precompute and move recurring values out of loop
+		_randomcontainer = document.querySelectorAll(".randomPizzaContainer");
+		var dx = determineDx(_randomcontainer[0], size),
+				newwidth = (_randomcontainer[0].offsetWidth + dx) + 'px';
+		for (var i = 0; i < _randomcontainer.length; i++) {
+			_randomcontainer[i].style.width = newwidth;
 		}
 	}
 
@@ -502,20 +502,6 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 	console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
-// THe following function was pulled from a stackoverflow post:
-// http://stackoverflow.com/questions/19675997/how-to-exact-set-a-dynamic-style-transform-using-javascript
-function setTransform (element, rotationArg, scaleArg, skewXArg, skewYArg) {
-	var transfromString = ("rotate(" + rotationArg + "deg ) scale(" + scaleArg
-												 + ") skewX(" + skewXArg + "deg ) skewY(" + skewYArg + "deg )");
-
-	// now attach that variable to each prefixed style
-	element.style.webkitTransform = transfromString;
-	element.style.MozTransform = transfromString;
-	element.style.msTransform = transfromString;
-	element.style.OTransform = transfromString;
-	element.style.transform = transfromString;
-}
-
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
@@ -524,23 +510,19 @@ function updatePositions() {
 	frame++;
 	window.performance.mark("mark_start_frame");
 
-	var items = document.querySelectorAll('.mover');
+	var items = document.querySelectorAll('.mover'),
 	// CACHE for performance, precompute recurrent values
-	var _scrollTop = document.body.scrollTop / 1250;
-	var phases = [(Math.sin(_scrollTop)),
+			_scrollTop = document.body.scrollTop / 1250,
+			phases = [(Math.sin(_scrollTop)),
 							 (Math.sin(_scrollTop + 1)),
 							 (Math.sin(_scrollTop + 2)),
 							 (Math.sin(_scrollTop + 3)),
 							 (Math.sin(_scrollTop + 4))];
 
 	for (var i = 0; i < items.length; i++) {
-//		var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
 		var phase = phases[(i % 5)];
-
-//		items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
 		var tstring = "translateX(" + (100 * phase) + "px) translateZ(0)";
-		items[i].style.transform = tstring;
-
+		items[i].style.transform = tstring; // use a css transform to kick in layer-based gpu accel
 	}
 
 	// User Timing API to the rescue again. Seriously, it's worth learning.

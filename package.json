@@ -1,0 +1,36 @@
+{
+	"name": "P4",
+	"version": "1.0.0",
+	"description": "Mission: Website Optimization",
+	"main": "index.js",
+	"dependencies": {
+		"uglify": "^0.1.1"
+	},
+	"devDependencies": {
+		"autoprefixer": "latest",
+		"css-less": "latest"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/uncleoptimus/udacityP4.git"
+	},
+	"keywords": [
+		"udacity",
+		"P4",
+		"nanodegree"
+	],
+	"author": "Andrew Roy Chen",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/uncleoptimus/udacityP4/issues"
+	},
+	"homepage": "https://github.com/uncleoptimus/udacityP4",
+	"scripts": {
+		"conc": "cat views/css/style.css views/css/bootstrap-grid.css > views/css/bundle.css",
+		"autop": "autoprefixer views/css/bundle.css",
+		"build:css": "concat-cli -f views/css/style.css views/css/bootstrap-grid.css -o views/css/bundle.css && autoprefixer views/css/bundle.css && cleancss views/css/bundle.css"
+	}
+}
