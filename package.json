@@ -29,8 +29,12 @@
 	},
 	"homepage": "https://github.com/uncleoptimus/udacityP4",
 	"scripts": {
-		"conc": "cat views/css/style.css views/css/bootstrap-grid.css > views/css/bundle.css",
-		"autop": "autoprefixer views/css/bundle.css",
-		"build:css": "concat-cli -f views/css/style.css views/css/bootstrap-grid.css -o views/css/bundle.css && autoprefixer views/css/bundle.css && cleancss views/css/bundle.css"
+		"conc": "cat views/css/style.css views/css/bootstrap-grid.css > bundle.css",
+		"prefix": "autoprefixer bundle.css",
+		"build:css": "cat views/css/style.css views/css/bootstrap-grid.css | cleancss | autoprefixer -o views/css/bundle.css ",
+		"build:js": "browserify views/js/main.js | uglifyjs -mc -o views/js/build.js",
+		"watch:js": "watchify views/js/main.js -o  views/js/build.js -v",
+		"build:all": "build:css && build:js"
+
 	}
 }

@@ -56,9 +56,11 @@ Build Tools:
 	- Installed watchify to auto build using browserify upon file edits
 	- Installed auto-prefixer for css files
 	- Installed cleancss for minification
-	- Installed concat-cli to concat css files
+	- Grokked CLI command 'cat' to concat files
 	- Added a build script to 'scripts' object in npm package.json file to automate build process
-	NOTE: using Brackets editor, including extensions to auto-minify files...
+	NOTE: using Brackets editor extension to auto-minify js files
+	- Using npm build script I now concat, minify and autoprefix the css for pizza.html; save 1 request
+
 
 ## Website Performance Optimization portfolio project
 
