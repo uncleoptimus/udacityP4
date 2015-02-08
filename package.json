@@ -35,6 +35,5 @@
 		"build:js": "browserify views/js/main.js | uglifyjs -mc -o views/js/build.js",
 		"watch:js": "watchify views/js/main.js -o  views/js/build.js -v",
 		"build:all": "build:css && build:js"
-
 	}
 }
