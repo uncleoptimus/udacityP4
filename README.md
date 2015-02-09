@@ -1,6 +1,9 @@
 ## Website Performance Optimization portfolio project
 My challenge, that I accepted (and they sure hoped I would), was to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
+The project repo is here: https://github.com/uncleoptimus/udacityP4
+The project lives at: http://uncleoptimus.github.io/udacityP4/
+
 MY NOTES
 Catchphrase: "Measure First, THEN Optimize"
 
@@ -63,7 +66,7 @@ III. Build Tools:
 	- Added a build script to 'scripts' object in npm package.json file to automate build process
 	NOTE: using Brackets editor extension also will auto-minify files
 	- Using npm build script I now concat, minify and autoprefix the css for pizza.html; save 1 request
-	- Usning npm build script I now uglify the main.js file, shaving 10Kb
+	- Using npm build script I now uglify the main.js file, shaving 10Kb
 
 
 ### Customization with Bootstrap
