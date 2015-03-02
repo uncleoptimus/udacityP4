@@ -5,6 +5,7 @@ The project repo is here: https://github.com/uncleoptimus/udacityP4
 The project lives at: http://uncleoptimus.github.io/udacityP4/
 
 MY NOTES
+
 Catchphrase: "Measure First, THEN Optimize"
 
 I. PageSpeed of index.html:
@@ -66,7 +67,9 @@ III. Build Tools:
 	- Added a build script to 'scripts' object in npm package.json file to automate build process
 	NOTE: using Brackets editor extension also will auto-minify files
 	- Using npm build script I now concat, minify and autoprefix the css for pizza.html; save 1 request
-	- Using npm build script I now uglify the main.js file, shaving 10Kb
+	- Using npm build script I now uglify the main.js file, shaving 10Kb...
+
+REDACTED! Uglifying necessarily mangles function defnition names, thereby breaking any event handling declared in the dom. Switched pizza.html to use main.min.js instead of the uglified build.js 
 
 
 ### Customization with Bootstrap
